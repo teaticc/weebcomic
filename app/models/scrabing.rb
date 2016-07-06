@@ -1,19 +1,15 @@
 class Scrabing
-  def self.comics(site_id)
-    agent = Mechanize.new
-    # agent.user_agent_alias = "Mac Safari"# エージェント偽装
-    site = Site.find(site_id)
-    top_page = agent.get(site.url)
-    comic_info = top_page.search(site.info_tag)
-    #site_idごとに違う関数を呼び出す#もっと綺麗に書きたい
-    if site_id == 1
-      jump_plus(comic_info)
-    elsif site_id == 2
-      urasunday(comic_info)
-    end
+  # 一気に更新チェック
+  def self.check_comics
+      jump_plus
+      urasunday
   end
 
-  def self.jump_plus(comic_info)
+  def self.jump_plus
+    agent = Mechanize.new
+    site = Site.find(1)
+    top_page = agent.get(site.url)
+    comic_info = top_page.search(site.info_tag)
     read_link = "http://plus.shonenjump.com/client_info/SHUEISHA/html/player/viewer.html?tw=2&lin=1&cid="
     comic_info.each do |info|
       comic = {}
@@ -39,7 +35,11 @@ class Scrabing
     end
   end
 
-  def self.urasunday(comic_info)
+  def self.urasunday
+    agent = Mechanize.new
+    site = Site.find(2)
+    top_page = agent.get(site.url)
+    comic_info = top_page.search(site.info_tag)
     comic_info.each do |info|
       comic = {}
       comic[:site_id] = 2

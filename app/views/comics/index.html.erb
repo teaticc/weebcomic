@@ -1,0 +1,21 @@
+<%= @comics.each do |comic| %>
+  <div class="comic_info clearfix">
+    <a href="/comics/<%= comic.id %>">
+      <img src="<%= comic.thumbnail %>" alt="comic.title" class="thumbnail">
+    </a>
+    <div class="info_right">
+      <p class="comic_title"><%= comic.title %></p>
+      <ul class="basic_info clearfix">
+        <li><%= comic.author %></li>
+        <li>
+          <a href="<%= comic.site.url %>"><%= comic.site.title %></a>
+        <li>
+      </ul>
+      <ul class="comic_links clearfix">
+        <li><a href="<%= comic.new_url %>">最新話</a></li>
+        <li><%= link_to "作品詳細", "/comics/#{comic.id}" %></li>
+        <li><a href="<%= comic.list_url %>">掲載サイト</a></li>
+      </ul>
+    </div>
+  </div>
+<% end %>
