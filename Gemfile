@@ -47,3 +47,4 @@ end
 
 gem "pry"
 gem "mechanize"
+gem "devise"
