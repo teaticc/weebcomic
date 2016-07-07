@@ -48,3 +48,4 @@ end
 gem "pry"
 gem "mechanize"
 gem "devise"
+gem "jquery-turbolinks"
