@@ -1,21 +1,51 @@
-<%= @comics.each do |comic| %>
-  <div class="comic_info clearfix">
-    <a href="/comics/<%= comic.id %>">
-      <img src="<%= comic.thumbnail %>" alt="comic.title" class="thumbnail">
-    </a>
-    <div class="info_right">
-      <p class="comic_title"><%= comic.title %></p>
-      <ul class="basic_info clearfix">
-        <li><%= comic.author %></li>
-        <li>
-          <a href="<%= comic.site.url %>"><%= comic.site.title %></a>
-        <li>
-      </ul>
-      <ul class="comic_links clearfix">
-        <li><a href="<%= comic.new_url %>">最新話</a></li>
-        <li><%= link_to "作品詳細", "/comics/#{comic.id}" %></li>
-        <li><a href="<%= comic.list_url %>">掲載サイト</a></li>
-      </ul>
+<div class="tab-menu">
+  <ul class="tab-selector">
+    <li id="sun" class="selected">日曜</li>
+    <li id="mon">月曜</li>
+    <li id="tue">火曜</li>
+    <li id="wed">水曜</li>
+    <li id="thu">木曜</li>
+    <li id="fri">金曜</li>
+    <li id="sat">土曜</li>
+  </ul>
+
+  <div class="contents">
+    <div class="sun wday_content clearfix selected">
+      <% @comics_sun.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
+    </div>
+    <div class="mon wday_content clearfix">
+      <% @comics_mon.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
+    </div>
+    <div class="tue wday_content clearfix">
+      <% @comics_tue.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
+    </div>
+    <div class="wed wday_content clearfix">
+      <% @comics_wed.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
+    </div>
+    <div class="thu wday_content clearfix">
+      <% @comics_thu.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
+    </div>
+    <div class="fri wday_content clearfix">
+      <% @comics_fri.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
+    </div>
+    <div class="sat wday_content clearfix">
+      <% @comics_sat.each do |comic| %>
+        <%= render partial: "comic", locals: { comic: comic } %>
+      <% end %>
     </div>
   </div>
-<% end %>
+</div>
+
+

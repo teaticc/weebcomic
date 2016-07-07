@@ -120,37 +120,102 @@ ol,ul{
   list-style: none;
 }
 
+//リセットここまで
 
-.comic_info{
+.tab-menu{
+  width: 800px;
+  margin-left: 10px;
+
+  ul.tab-selector{
+    margin: 10px 0 0 0;
+    padding-left: 4px;
+  }
+
+  .tab-selector li{
+    display: inline-block;
+    width: 88px;
+    height: 22px;
+    padding: 10px 10px 0;
+    cursor: pointer;
+    background-color: #CCCCCC;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+
+    &.selected{
+      background-color: #FF7675;
+      color: #fff;
+    }
+
+  }
+}
+
+div.contetns{
+  background-color: #fff;
+}
+
+  .sun, .mon, .tue, .wed, .thu, .fri, .sat{
+    display: none;
+    background-color: #FF7675;
+  }
+
+div.sun{
+  display: block;
+}
+
+div.comic_info{
+  width: 380px;
+  height: auto;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #fff;
+  float:left;
+}
+
+div.comic_title{
+  font-size: 20px;
   width: 100%;
+  height: auto;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+a.thumbnail_link{
+  display: block;
+  position: relative;
   height: 100px;
-  margin: 10px 0;
+  width: 100px;
+  float:left;
+  margin:0 auto;
 }
 
 img.thumbnail{
-  display: table-cell;
-  float:left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
   height: auto;
   width: 100px;
 }
 
+
 div.info_right{
   height: 100px;
   float: left;
+  margin-left: 10px;
 }
 
-.comic_title{
-  font-size: 26px;
-}
-
-ul.basic_info{
-  margin: 8px 0;
-  li{
-    float: left;
-    margin-right: 10px;
+.info_right {
+  p,a,ul{
+  // margin-bottom: 10px;
+  line-height: 33px;
   }
 }
-
 
 .comic_links li{
   float: left;
