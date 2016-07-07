@@ -1,9 +1,15 @@
 class Scrabing
   # 一気に更新チェック
   def self.check_comics
+      series_check = Comic.all
+      #連載チェックフラグを一括オフ
+      series_check.each do |comic|
+        comic[:series] = false
+      end
       jump_plus
       urasunday
-      # finished_comics = Comic.find
+      #連載終了を一括削除
+      Comic.delete_all("series = false")
   end
 
   def self.jump_plus
@@ -19,6 +25,7 @@ class Scrabing
       comic[:author] = info.at("p.panel_author").inner_text
       comic[:thumbnail] = Site.find(1).url + info.at("img.panel_image")[:src]
       comic[:list_url] = info.at("a.panel_image_wrap")[:href]
+      # html形式とビューアー形式でurlが異なる
       if info.at("span.content_id") == nil
         comic[:new_url] = info.at("span.url_link").inner_text
       else
@@ -28,6 +35,7 @@ class Scrabing
       update_str = info.at("p.panel_date").inner_text
       comic[:updated] = Time.strptime(update_str, "%Y年%m月%d日")
       comic[:weekday] = comic[:updated].wday
+      comic[:series] = true
       if Comic.find_by(title: comic[:title]) == nil
         Comic.create(comic)
       else
@@ -66,6 +74,7 @@ class Scrabing
       update_str =~ /20..\/..\/../
       comic[:updated] = Time.parse($&)
       comic[:weekday] = comic[:updated].wday
+      comic[:series] = true
       if Comic.find_by(title: comic[:title]) == nil
         Comic.create(comic)
       else
@@ -93,6 +102,7 @@ class Scrabing
   #     update_str =
   #     comic[:updated] = Time.parse(update_str)
   #     comic[:weekday] = comic[:updated].wday
+  #     comic[:series] = true
   #     if Comic.find_by(title: comic[:title]) == nil
   #       Comic.create(comic)
   #     else
