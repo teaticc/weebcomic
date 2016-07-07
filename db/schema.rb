@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706104635) do
+ActiveRecord::Schema.define(version: 20160706134636) do
 
   create_table "comics", force: :cascade do |t|
     t.text     "title",      limit: 65535
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160706104635) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "site_id",    limit: 4
+    t.integer  "weekday",    limit: 4
   end
 
   create_table "comments", force: :cascade do |t|

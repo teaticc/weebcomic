@@ -3,6 +3,7 @@ class Scrabing
   def self.check_comics
       jump_plus
       urasunday
+      # finished_comics = Comic.find
   end
 
   def self.jump_plus
@@ -26,6 +27,7 @@ class Scrabing
       #文字列で更新日時を取得してからdate型へ変換
       update_str = info.at("p.panel_date").inner_text
       comic[:updated] = Time.strptime(update_str, "%Y年%m月%d日")
+      comic[:weekday] = comic[:updated].wday
       if Comic.find_by(title: comic[:title]) == nil
         Comic.create(comic)
       else
@@ -63,6 +65,7 @@ class Scrabing
       #正規表現で日付を検索
       update_str =~ /20..\/..\/../
       comic[:updated] = Time.parse($&)
+      comic[:weekday] = comic[:updated].wday
       if Comic.find_by(title: comic[:title]) == nil
         Comic.create(comic)
       else
@@ -71,5 +74,33 @@ class Scrabing
       end
     end
   end
+
+
+  ## 新サイト追加用テンプレート
+  # def self.
+  #   site_num =
+  #   agent = Mechanize.new
+  #   site = Site.find(site_num)
+  #   top_page = agent.get(site.url)
+  #   comic_info = top_page.search(site.info_tag)
+  #   comic_info.each do |info|
+  #     comic = {}
+  #     comic[:site_id] = site_num
+  #     comic[:list_url] =
+  #     comic[:title] =
+  #     comic[:author] =
+  #     comic[:thumbnail] =
+  #     update_str =
+  #     comic[:updated] = Time.parse(update_str)
+  #     comic[:weekday] = comic[:updated].wday
+  #     if Comic.find_by(title: comic[:title]) == nil
+  #       Comic.create(comic)
+  #     else
+  #       comic_record = Comic.find_by(title: comic[:title])
+  #       comic_record.update(comic)
+  #     end
+  #   end
+  # end
+
 
 end
