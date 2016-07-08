@@ -5,13 +5,29 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-  </head>
+</head>
   <body>
     <header>
       <div class="site_title">
-        <h1><a href="/" data-no-turbolink="1">weebComic</a></h1>
+        <h1><%= link_to "weebComic", root_path %></h1>
       </div>
-      <div class="user_nav">
+      <div class="user_nav clearfix">
+        <% if user_signed_in? %>
+          <span>
+            <%= current_user.nickname %>
+            <ul>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+              <li><a href="/users/<%= current_user.id %>">マイページ</a></li>
+            </ul>
+          </span>
+        <% else %>
+          <ul>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          </ul>
+        <% end %>
       </div>
     </header>
 

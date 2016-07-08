@@ -133,6 +133,7 @@ div.site_title{
   width: 200px;
   height: 100%;
   margin-left:20px;
+  float:left
 }
 
 h1 a{
@@ -144,7 +145,30 @@ h1 a{
   }
 }
 
+div.user_nav{
+  li{
+    border: solid 1px white;
+    background-color: #FF7675;
+    margin-right:14px;
+    float:right;
+    padding: 4px;
 
+    a{
+      display: block;
+
+      font-size: 17px;
+      color: #fff;
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+div.user_nav a:hover{
+  text-decoration: none;
+}
 
 
 div.left_contents{
@@ -235,6 +259,7 @@ img.thumbnail{
 
 div.info_right{
   height: 100px;
+  width: 270px;
   float: left;
   margin-left: 10px;
 }
@@ -242,8 +267,13 @@ div.info_right{
 .info_right {
   p,a,ul{
   // margin-bottom: 10px;
-  line-height: 33px;
+  line-height: 30px;
+  word-wrap: break-word;
   }
+}
+
+p.comic_author{
+  font-size:12px;
 }
 
 .comic_links li{
