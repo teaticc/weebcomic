@@ -1,11 +1,13 @@
 class Scrabing
   # 一気に更新チェック
   def self.check_comics
-      series_check = Comic.all
+      # series_check = Comic.all
       #連載チェックフラグを一括オフ
-      series_check.each do |comic|
-        comic[:series] = false
-      end
+      # series_check.each do |comic|
+      #   comic.update = (:series = false)
+      # end
+      Comic.update_all(:series => false)
+      binding.pry
       jump_plus
       urasunday
       #連載終了を一括削除
@@ -53,37 +55,37 @@ class Scrabing
     comic_info.each do |info|
       comic = {}
       comic[:site_id] = 2
-      link = info.at("a.indexMainImgLink")[:href]
-      # linkの頭の.が邪魔なのでカット
-      index_url = Site.find(2).url + link.slice(1,link.length)
-      comic[:list_url] = index_url
-      #作品ページを取得して再scrabing
-      index_page = Mechanize.new.get(index_url)
-      comic[:title] = index_page.at("h1").inner_text
-      comic[:author] = index_page.at("h2").inner_text
       # binding.pry
-      comic[:thumbnail] = index_page.at("body section div a img")[:src]
-      new_link = index_page.at(".comicButtonBox a")[:href]
-      #index_urlの/index.html/以前にnew_linkの先頭の.以降を結合
-      index_url =~ /\/index.html/
-      comic[:new_url] = $` + new_link.slice(1,new_link.length)
-      # # index_url末尾のindex.html/を取り除き、new_link始めの.を除いて結合
-      # comic[:new_url] = index_url.slice(0,index_url.length - "index.html/".length) + new_link.slice(1,new_link.length)
-      update_str = index_page.at(".comicButtonBox").inner_text
-      #正規表現で日付を検索
-      update_str =~ /20..\/..\/../
-      comic[:updated] = Time.parse($&)
-      comic[:weekday] = comic[:updated].wday
-      comic[:series] = true
-      if Comic.find_by(title: comic[:title]) == nil
-        Comic.create(comic)
-      else
-        comic_record = Comic.find_by(title: comic[:title])
-        comic_record.update(comic)
+      unless info.at("a.indexMainImgLink") ==nile
+        link = info.at("a.indexMainImgLink")[:href]
+        # linkの頭の.が邪魔なのでカット
+        index_url = Site.find(2).url + link.slice(1,link.length)
+        comic[:list_url] = index_url
+        #作品ページを取得して再scrabing
+        index_page = Mechanize.new.get(index_url)
+        comic[:title] = index_page.at("h1").inner_text
+        comic[:author] = index_page.at("h2").inner_text
+        comic[:thumbnail] = index_page.at("body section div a img")[:src]
+        new_link = index_page.at(".comicButtonBox a")[:href]
+        #index_urlの/index.html/以前にnew_linkの先頭の.以降を結合
+        index_url =~ /\/index.html/
+        comic[:new_url] = $` + new_link.slice(1,new_link.length)
+        # # index_url末尾のindex.html/を取り除き、new_link始めの.を除いて結合
+        update_str = index_page.at(".comicButtonBox").inner_text
+        #正規表現で日付を検索
+        update_str =~ /20..\/..\/../
+        comic[:updated] = Time.parse($&)
+        comic[:weekday] = comic[:updated].wday
+        comic[:series] = true
+        if Comic.find_by(title: comic[:title]) == nil
+          Comic.create(comic)
+        else
+          comic_record = Comic.find_by(title: comic[:title])
+          comic_record.update(comic)
+        end
       end
     end
   end
-
 
   ## 新サイト追加用テンプレート
   # def self.
