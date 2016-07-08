@@ -123,57 +123,76 @@ ol,ul{
 //リセットここまで
 
 header{
-  font-size: 25px;
-  height: 30px;
+  // font-size: 25px;
+  // height: 30px;
   background-color: #FF7675;
-  padding: 5px 0;
+  // padding: 5px 0;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  a.navbar-brand {
+    color:#fff;
+    font-size: 25px;
+  }
 }
 
-div.site_title{
-  width: 200px;
-  height: 100%;
-  margin-left:20px;
-  float:left
-}
+// div.site_title{
+//   width: 200px;
+//   height: 100%;
+//   margin-left:20px;
+//   float:left
+// }
 
-h1 a{
-  margin-top: 15px;
+// h1 a{
+//   margin-top: 15px;
+//   color: #fff;
+//   text-decoration: none;
+//   &:hover{
+//     text-decoration: none;
+//   }
+// }
+
+// div.user_nav{
+//   li{
+//     border: solid 1px white;
+//     background-color: #FF7675;
+//     margin-right:14px;
+//     float:right;
+//     padding: 4px;
+
+//     a{
+//       display: block;
+
+//       font-size: 17px;
+//       color: #fff;
+//       text-decoration: none;
+//     }
+//     a:hover{
+//       text-decoration: none;
+//     }
+//   }
+// }
+//
+// div.user_nav a:hover{
+//   text-decoration: none;
+// }
+
+ul.nav.navbar-nav{
+  float:right;
+  li a{
   color: #fff;
-  text-decoration: none;
   &:hover{
-    text-decoration: none;
+    background-color: #E36767;
+  }
   }
 }
-
-div.user_nav{
-  li{
-    border: solid 1px white;
-    background-color: #FF7675;
-    margin-right:14px;
-    float:right;
-    padding: 4px;
-
-    a{
-      display: block;
-
-      font-size: 17px;
-      color: #fff;
-      text-decoration: none;
-    }
-    a:hover{
-      text-decoration: none;
-    }
-  }
-}
-
-div.user_nav a:hover{
-  text-decoration: none;
-}
-
 
 div.left_contents{
   width: 900px;
   margin:0 auto;
+  background-color: #fff;
 }
 
 .tab-menu{
@@ -197,24 +216,26 @@ div.left_contents{
     font-size: 14px;
     color: #fff;
     text-align: center;
+    box-sizing: content-box;
 
     &.selected{
       background-color: #FF7675;
       color: #fff;
     }
+
+    &.user_tab{
+      width: 250px;
+    }
   }
+
 }
 
-div.contetns{
-  background-color: #fff;
-}
-
-.sun, .mon, .tue, .wed, .thu, .fri, .sat{
+.wday_content{
   display: none;
   background-color: #FF7675;
 }
 
-div.contents div.selected{
+div.main_contents div.selected{
   display: block;
 }
 
@@ -226,6 +247,7 @@ div.comic_info{
   border-radius: 5px;
   background-color: #fff;
   float:left;
+  box-sizing: content-box;
 }
 
 div.comic_title{
@@ -251,6 +273,8 @@ img.thumbnail{
   left: 0;
   bottom: 0;
   right: 0;
+  padding:0;
+  // border: none;
   margin: auto;
   height: auto;
   width: 100px;
@@ -285,4 +309,15 @@ p.comic_author{
   content: "";
   clear: both;
   display: block;
+}
+
+div.main_contents{
+  width: 800px;
+  margin:0 auto;
+}
+
+div.fav_comics{
+  background-color: #FF7675;
+  width:800px;
+  // margin:10px 0;
 }

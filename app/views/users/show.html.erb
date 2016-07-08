@@ -1,0 +1,18 @@
+<div class="left_contents">
+  <div class="tab-menu">
+   <ul class="tab-selector">
+      <li class="selected user_tab">
+        <h2><p><%= current_user.nickname %>さんのマイページ</p></h2>
+      </li>
+    </ul>
+  </div>
+  <div class="fav_comics clearfix">
+    <% @fav_comics.each do |comic| %>
+      <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
+        <%= render partial: "comics/comic_star", locals: { comic: comic} %>
+      <% else %>
+        <%= render partial: "comics/comic_blank_star", locals: { comic: comic} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

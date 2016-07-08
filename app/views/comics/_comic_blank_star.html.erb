@@ -1,0 +1,19 @@
+<div class="comic_info clearfix">
+    <div class="comic_title">
+      <p data-turbolinks = "false"><%= comic.title %>
+        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true %>
+      </p>
+    </div>
+  <a href="/comics/<%= comic.id %>" class="thumbnail_link">
+    <img src="<%= comic.thumbnail %>" alt="comic.title" class="thumbnail">
+  </a>
+  <div class="info_right">
+    <p class="comic_author"><%= comic.author %></p>
+    <a href="<%= comic.site.url %>"><%= comic.site.title %></a>
+    <ul class="comic_links clearfix">
+      <li><a href="<%= comic.new_url %>">最新話</a></li>
+      <li><%= link_to "作品詳細", "/comics/#{comic.id}" %></li>
+      <li><a href="<%= comic.list_url %>">掲載サイト</a></li>
+    </ul>
+  </div>
+</div>
