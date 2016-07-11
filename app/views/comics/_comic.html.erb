@@ -1,127 +1,27 @@
-<div class="sun wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_sun.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_sun.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="mon wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_mon.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_mon.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="tue wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_tue.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_tue.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-
-      <div class="wed wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_wed.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_wed.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="thu wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_thu.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_tbu.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-
-      <div class="fri wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_fri.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_fri.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="sat wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_sat.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_sat.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
+<div class="comic_title">
+  <p class="clearfix"><%= comic.title %>
+  </p>
+</div>
+<a href="/comics/<%= comic.id %>" class="thumbnail_link">
+  <img src="<%= comic.thumbnail %>" alt="comic.title" class="thumbnail">
+</a>
+<div class="info_right">
+  <p class="comic_author"><%= comic.author %></p>
+  <a href="<%= comic.site.url %>"><%= comic.site.title %></a>
+  <ul class="comic_links clearfix">
+    <li><a href="<%= comic.new_url %>">最新話</a></li>
+    <li><%= link_to "作品詳細", "/comics/#{comic.id}" %></li>
+    <li><a href="<%= comic.list_url %>">掲載サイト</a></li>
+  </ul>
+  <div class="fav_button">
+    <% if user_signed_in? %>
+      <% if current_user.favorite_comics.find_by_id(comic.id) %>
+        <%= button_to "お気に入り解除", user_favorite_path(user_id: current_user.id, id: comic.id), method: :delete, remote: true, class: "like yes", id:"comic_#{comic.id}" %>
+        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true, class: "not_like", id:"comic_#{comic.id}" %>
+      <% else %>
+        <%= button_to "お気に入り解除", user_favorite_path(user_id: current_user.id, id: comic.id), method: :delete, remote: true ,class: "like", id:"comic_#{comic.id}" %>
+        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true ,class: "not_like yes", id:"comic_#{comic.id}" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

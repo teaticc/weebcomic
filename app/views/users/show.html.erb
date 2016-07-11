@@ -6,13 +6,11 @@
       </li>
     </ul>
   </div>
-  <div class="fav_comics clearfix">
+  <div class="fav_comics clearfix comic_tiles">
     <% @fav_comics.each do |comic| %>
-      <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-        <%= render partial: "comics/comic_star", locals: { comic: comic} %>
-      <% else %>
-        <%= render partial: "comics/comic_blank_star", locals: { comic: comic} %>
-      <% end %>
+      <div class="comic_info clearfix">
+        <%= render partial: "comics/comic", locals: {comic: comic } %>
+      </div>
     <% end %>
   </div>
 </div>

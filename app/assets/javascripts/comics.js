@@ -36,7 +36,6 @@
 $(document).on("turbolinks:load", function(){
   var day_checker = new Array("sun", "mon", "tue", "wed", "thu", "fri", "sat");
   var weekday = new Date().getDay();
-  console.log("ok");
   var today = day_checker[weekday];
   // 取得した曜日タグとIDにselected付与
   $("li#" + today).addClass("selected");
@@ -47,5 +46,21 @@ $(document).on("turbolinks:load", function(){
     $(this).addClass("selected");
     $("div.wday_content").hide();
     $("div." + this.id).show();
+  });
+  // お気に入り解除ボタン
+  $(document).on("click", "input.like.yes",function(){
+    console.log(this);
+    $(this).removeClass("yes");
+    $("input.not_like#" + this.id).addClass("yes");
+    $(this).hide();
+    $("input.not_like.yes#" + this.id).show();
+  });
+  // お気に入りボタン
+  $(document).on("click", "input.not_like.yes",function(){
+    console.log(this);
+    $(this).removeClass("yes");
+    $("input.like#" + this.id).addClass("yes");
+    $(this).hide();
+    $("input.like.yes#" + this.id).show();
   });
 });

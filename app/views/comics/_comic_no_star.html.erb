@@ -1,6 +1,8 @@
 <div class="comic_info clearfix">
     <div class="comic_title">
-      <p><%= comic.title %></p>
+      <p><%= comic.title %>
+        <% binding.pry %>
+      </p>
     </div>
   <a href="/comics/<%= comic.id %>" class="thumbnail_link">
     <img src="<%= comic.thumbnail %>" alt="comic.title" class="thumbnail">

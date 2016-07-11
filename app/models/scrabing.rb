@@ -7,7 +7,6 @@ class Scrabing
       #   comic.update = (:series = false)
       # end
       Comic.update_all(:series => false)
-      binding.pry
       jump_plus
       urasunday
       #連載終了を一括削除
@@ -56,7 +55,7 @@ class Scrabing
       comic = {}
       comic[:site_id] = 2
       # binding.pry
-      unless info.at("a.indexMainImgLink") ==nile
+      unless info.at("a.indexMainImgLink") ==nil
         link = info.at("a.indexMainImgLink")[:href]
         # linkの頭の.が邪魔なのでカット
         index_url = Site.find(2).url + link.slice(1,link.length)

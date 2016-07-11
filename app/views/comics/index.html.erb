@@ -9,138 +9,16 @@
       <li id="fri">金曜</li>
       <li id="sat">土曜</li>
     </ul>
-
     <div class="main_contents">
-
-      <div class="sun wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_sun.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
+      <% @weekdays.each_with_index do |week,i| %>
+        <div class="<%= week %> wday_content clearfix ">
+          <% @comics.where(weekday: i).each do |comic| %>
+            <div class="comic_info clearfix">
+              <%= render partial: "comic", locals: {comic: comic } %>
+            </div>
           <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_sun.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="mon wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_mon.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_mon.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="tue wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_tue.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_tue.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-
-      <div class="wed wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_wed.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_wed.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="thu wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_thu.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_tbu.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-
-      <div class="fri wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_fri.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_fri.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="sat wday_content clearfix">
-        <% if user_signed_in? %>
-          <% @comics_sat.each do |comic| %>
-            <!-- お気に入りの有無で星塗りつぶし -->
-            <% if current_user.favorite_comics.find_by_id(comic[:id]) %>
-              <%= render partial: "comic_star", locals: { comic: comic} %>
-            <% else %>
-              <%= render partial: "comic_blank_star", locals: { comic: comic} %>
-            <% end %>
-          <% end %>
-        <!-- ログインしていなければ星なし -->
-        <% else %>
-          <% @comics_sat.each do |comic| %>
-            <%= render partial: "comic_no_star", locals: { comic: comic } %>
-          <% end %>
-        <% end %>
-      </div>
-
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
-
