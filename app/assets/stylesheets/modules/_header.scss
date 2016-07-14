@@ -1,0 +1,34 @@
+.clearfix:after{
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+.nav{
+  font-size: $hdFont1;
+  height: $hdLineH;
+  line-height: $hdLineH;
+  color: white;
+  background-color: $mainRed;
+  padding: 0 20px;
+  @include anchor-clear;
+  @include clearfix;
+}
+
+.nav__title {
+  float: left;
+}
+
+.nav__menu {
+  float: right;
+  font-size: $hdFont2;
+  @include clearfix;
+}

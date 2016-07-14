@@ -15,7 +15,12 @@
 
 @import "./reset";
 @import "./config/variables";
-@import "/mixin/clearfix";
+@import "./mixin/clearfix";
+@import "./mixin/anchor-clear";
 @import "./modules/header";
 @import "./modules/sidebar";
 @import "./modules/tile";
+@import "./modules/top-index";
+@import "./modules/user-index";
+@import "./modules/ls-btn";
+@import "./base";

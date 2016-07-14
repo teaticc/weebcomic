@@ -1,0 +1,12 @@
+.main-wrapper {
+  margin-top: $hdLineH + 10;
+  @include clearfix;
+}
+
+.container {
+  float:left;
+}
+
+.sidebar{
+  float:right;
+}
