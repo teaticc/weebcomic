@@ -1,0 +1,7 @@
+@include clearfix{
+  &:after{
+    content: "";
+    display: none;
+    clear: both;
+  }
+}

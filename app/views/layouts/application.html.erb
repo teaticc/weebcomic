@@ -62,10 +62,17 @@
     </div>
 
     <div class="">
-      <div class="">
-        <div class="">
+      <div class="clear fix">
+        <div class="main-block">
           <%= bootstrap_flash %>
           <%= yield %>
+        </div>
+        <div class="side-menu">
+          <ul>掲載サイト一覧
+            <% Site.all.each do |site| %>
+              <li><a href="<%= site.url %>"><%= site.title %></a></li>
+            <% end %>
+          </ul>
         </div>
       </div>
 
