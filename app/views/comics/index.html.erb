@@ -13,7 +13,7 @@
       <% @weekdays.each_with_index do |week,i| %>
         <div class="<%= week %> wday_content clearfix ">
           <% @comics.where(weekday: i).each do |comic| %>
-            <div class="comic_info clearfix">
+            <div class="comic-tile">
               <%= render partial: "comic", locals: {comic: comic } %>
             </div>
           <% end %>
