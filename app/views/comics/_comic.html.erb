@@ -1,26 +1,23 @@
 <div class="comic_title">
-  <p class="clearfix"><%= comic.title %>
-  </p>
+  <p><%= comic.title %></p>
 </div>
-<a href="/comics/<%= comic.id %>" class="thumbnail_link">
-  <img src="<%= comic.thumbnail %>" alt="comic.title" class="thumbnail">
-</a>
+<%= link_to image_tag(comic.thumbnail, class: "thumbnail"), "comics/#{comic.id}", class: "thumbnail_link" %>
 <div class="info_right">
   <p class="comic_author"><%= comic.author %></p>
-  <a href="<%= comic.site.url %>"><%= comic.site.title %></a>
+  <%= link_to comic.site.title, comic.site.url %>
   <ul class="comic_links clearfix">
-    <li><a href="<%= comic.new_url %>">最新話</a></li>
+    <li><%= link_to "最新話", comic.new_url %></li>
     <li><%= link_to "作品詳細", "/comics/#{comic.id}" %></li>
-    <li><a href="<%= comic.list_url %>">掲載サイト</a></li>
+    <li><%= link_to "掲載サイト", comic.list_url %></li>
   </ul>
   <div class="fav_button">
     <% if user_signed_in? %>
       <% if current_user.favorite_comics.find_by_id(comic.id) %>
-        <%= button_to "お気に入り解除", user_favorite_path(user_id: current_user.id, id: comic.id), method: :delete, remote: true, class: "like yes", id:"comic_#{comic.id}" %>
-        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true, class: "not_like", id:"comic_#{comic.id}" %>
+        <%= button_to "お気に入り解除", user_favorite_path(user_id: current_user.id, id: comic.id), method: :delete, remote: true, class: "like yes", id: "comic_#{comic.id}" %>
+        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true, class: "not_like", id: "comic_#{comic.id}" %>
       <% else %>
-        <%= button_to "お気に入り解除", user_favorite_path(user_id: current_user.id, id: comic.id), method: :delete, remote: true ,class: "like", id:"comic_#{comic.id}" %>
-        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true ,class: "not_like yes", id:"comic_#{comic.id}" %>
+        <%= button_to "お気に入り解除", user_favorite_path(user_id: current_user.id, id: comic.id), method: :delete, remote: true ,class: "like", id: "comic_#{comic.id}" %>
+        <%= button_to "お気に入り", user_favorites_path(user_id: current_user.id,comic_id: comic.id), remote:true ,class: "not_like yes", id: "comic_#{comic.id}" %>
       <% end %>
     <% end %>
   </div>
