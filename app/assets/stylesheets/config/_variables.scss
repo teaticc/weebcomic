@@ -6,3 +6,14 @@ $subRed: #D56161;//マウスオーバー時
 $hdFont1: 25px;//タイトルが基準
 $hdFont2: $hdFont1 * 2/3;
 $hdLineH: 2 * $hdFont1;
+
+// base_layouts
+$sidebarWidth: 200px;
+
+// comic_tile_layouts
+$tileWidth: 400px;
+$tileMargin: $tileWidth / 100;
+$tileContentWidth: $tileWidth - $tileMargin * 2;
+$tileHeight: $tileWidth / 4;
+$tileContentHeight: $tileHeight - $tileMargin * 2;
+$comicInfoWidth: $tileWidth - $tileContentHeight;

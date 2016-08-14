@@ -1,12 +1,22 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+
 .main-wrapper {
-  margin-top: $hdLineH + 10;
+  margin-top: $hdLineH + 10px;
   @include clearfix;
 }
 
 .container {
-  float:left;
+  float: left;
+  width: calc(100% - #{$sidebarWidth} - 10px);
+  min-width: $tileWidth;
+  margin: 0 5px;
 }
 
-.sidebar{
-  float:right;
+.sidebar {
+  float: left;
+  width: $sidebarWidth;
 }
