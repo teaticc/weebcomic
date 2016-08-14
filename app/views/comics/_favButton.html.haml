@@ -1,0 +1,6 @@
+.comic-tile__fav-button{id: "comic_#{comic.id}"}
+  - if user_signed_in?
+    - if current_user.favorite_comics.find_by_id(comic.id)
+      = button_to "お気に入り解除", user_favorite_path(user_id: current_user, id: comic), method: :delete, remote: true, class: "like yes like-button"
+    - else
+      = button_to "お気に入り", user_favorites_path(user_id: current_user,comic_id: comic), remote: true ,class: "like-button not-like yes"

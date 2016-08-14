@@ -1,0 +1,13 @@
+.comic-tile
+  .comic-tile__thumbnail
+    = link_to image_tag(comic.thumbnail, class: "thumbnail"), "comics/#{comic.id}", class: "thumbnail_link"
+  .comic-tile__right.comic-info
+    .comic-info__title
+      %p= comic.title
+    =render "comics/favButton", comic: comic
+    .comic-info__author
+      %p= comic.author
+    %ul.comic-info__links
+      %li= link_to "最新話", comic.new_url
+      %li= link_to "作品詳細", comic.list_url
+      %li= link_to comic.site.title, comic.site.url
