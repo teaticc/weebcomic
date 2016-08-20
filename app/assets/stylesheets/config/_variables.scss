@@ -11,9 +11,19 @@ $hdLineH: 2 * $hdFont1;
 $sidebarWidth: 200px;
 
 // comic_tile_layouts
-$tileWidth: 400px;
-$tileMargin: $tileWidth / 100;
-$tileContentWidth: $tileWidth - $tileMargin * 2;
-$tileHeight: $tileWidth / 4;
-$tileContentHeight: $tileHeight - $tileMargin * 2;
-$comicInfoWidth: $tileWidth - $tileContentHeight;
+$tileWidth: 98%;
+$tileMargin: 1%;
+$tileWidthMin: 400px;
+$thumbnailWidth: 25%;
+$comicInfoWidth: 100% - $thumbnailWidth;
+// $tileContentWidth: $tileWidth - $tileMargin * 2;
+// $tileHeight: $tileWidth / 4;
+// $tileContentHeight: $tileHeight - $tileMargin * 2;
+// $comicInfoWidth: $tileContentWidth - $tileContentHeight;
+
+// breakpoints for media query
+$oneColumnBp: 600px;// タイル1列のみ
+$oneColumnSideBp: 1000px;// タイル１列 + サイドバー
+$twoColumnBp: 1400px;// ここまで２列 + サイドバー、以下同様
+$threeColumnBp: 1800px;
+$fourColumnBp: 2200px;
