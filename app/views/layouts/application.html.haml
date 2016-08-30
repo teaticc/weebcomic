@@ -1,0 +1,24 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "Weebcomic"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+  %body
+    / ヘッダー
+    %header.header
+      = render partial: "layouts/header"
+    .main-wrapper
+      / viewごとのコンテンツ
+      .container
+        = yield
+      / サイドバー
+      .sidebar
+        = render partial: "layouts/sidebar"
+    / フッター
+    %footer.footer

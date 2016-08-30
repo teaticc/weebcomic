@@ -1,0 +1,16 @@
+.left_contents
+  .tab
+    %ul.tab__selector
+      %li#sun 日曜
+      %li#mon 月曜
+      %li#tue 火曜
+      %li#wed 水曜
+      %li#thu 木曜
+      %li#fri 金曜
+      %li#sat 土曜
+    .tab__contents
+      - @weekdays.each_with_index do |day, i|
+        %div{class: "#{day} wday-content"}
+          %div.wday-content__tiles
+            - @comics.where(weekday: i).each do |comic|
+              = render comic

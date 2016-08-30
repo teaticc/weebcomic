@@ -1,0 +1,17 @@
+.like-button {
+  background-color: $mainRed;
+  border-radius: 3px;
+  color: #ffffff;
+  display: block;
+  text-decoration: none;
+  border-style: none;
+  outline: none;
+  &:hover{
+    background-color: $subRed;
+  }
+
+  &:active{
+    box-shadow: none;
+    padding: 2px 4px;
+  }
+}

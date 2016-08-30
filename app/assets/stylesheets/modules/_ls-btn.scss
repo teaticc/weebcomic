@@ -1,0 +1,10 @@
+.ls-btn {
+  float: right;
+  a{
+    display: block;
+    padding: 0 10px;
+  }
+  a:hover{
+    background-color: $subRed;
+  }
+}

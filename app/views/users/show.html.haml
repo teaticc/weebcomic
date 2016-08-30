@@ -1,0 +1,12 @@
+.left_contents
+  .tab-menu
+    %ul.tab-selector
+      %li.selected.user_tab
+        %h2
+        %p
+          = current_user.nickname
+          さんのマイページ
+  .fav_comics.clearfix.comic_tiles
+    - @fav_comics.each do |comic|
+      .comic_info.clearfix
+        = render partial: "comics/comic", locals: {comic: comic }

@@ -1,0 +1,78 @@
+.comic-tile {
+  width: $tileWidth;
+  min-width: $tileWidthMin;
+  // height: $tileHeight;
+  padding: $tileMargin;
+  margin: $tileMargin;
+  border-radius: 5px;
+  background-color: #fff;
+  float: left;
+  position: relative;
+
+  &:before{
+    content: "";
+    display: block;
+    padding-top: 25%;
+  }
+
+  &__wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    // @include clearfix;
+  }
+}
+
+.comic-tile__thumbnail {
+  position: relative;
+  height: 100%;
+  width: $thumbnailWidth;
+  float: left;
+}
+
+.thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 95%;
+}
+
+.comic-tile__right {
+  // height: $tileContentHeight;
+  width: $comicInfoWidth;
+  height: 100%;
+  float: left;
+  padding-left: 5px;
+}
+
+.comic-info {
+  font-size: 2.3vw;
+  line-height: 2.5;
+
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__title {
+    font-size: 3.5vw;
+    width: 100%;
+  }
+
+  &__author {
+  }
+
+  &__links {
+    @include clearfix;
+    li {
+      padding-right: 10px;
+      float: left;
+    }
+  }
+}

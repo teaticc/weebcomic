@@ -1,0 +1,52 @@
+
+.left_contents{
+  width: 100%;
+  margin:0 auto;
+  background-color: #fff;
+}
+
+.tab{
+  width: 100%;
+
+  &__selector{
+    margin: 10px 0 0 0;
+    padding-left: 4px;
+    li {
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      padding: 10px 10px 0;
+      cursor: pointer;
+      background-color: #CCCCCC;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+
+      &.selected{
+        background-color: #FF7675;
+        color: #fff;
+    }
+  }
+    &.user_tab{
+      width: 250px;
+    }
+  }
+
+}
+
+.tab__contents{
+  background-color: #FF7675;
+}
+
+.wday-content{
+  display: none;
+  &.selected{
+    display: block;
+  }
+
+  &__tiles{
+    @include clearfix;
+  }
+}
